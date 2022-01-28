@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Kalkulačka</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+</head>
+
+<style>
+    body {
+        background-color: #060930;
+        font-family: monospace;
+    }
+
+    .whole {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .calculator {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 40vw;
+        height: 40vh;
+        background-color: #595b83;
+        border-radius: 2vh;
+        border: 3px solid whitesmoke;
+        box-shadow: 15px 15px 2px 15px #04062793;
+    }
+
+    .display {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        width: 37vw;
+        height: 5vh;
+        margin-left: 1vw;
+        margin-top: 1vw;
+        padding-right: 1vw;
+        background-color: #333456;
+        border-radius: 0.5vh;
+        color: #a1a1a3;
+        font-weight: 700;
+        font-size: 2vh;
+        border: 2px solid #060930
+    }
+
+    .display-text:hover {
+        cursor: auto;
+    }
+
+
+
+    .buttons-column-wide {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 7.33vw;
+        height: 30vh;
+    }
+
+    .buttons-column-slim {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 3.66vw;
+        height: 30vh;
+    }
+
+    .buttons-full {
+        margin-top: 1vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 40vw;
+        height: 30vh;
+        color: whitesmoke;
+        font-size: 2vh;
+        font-weight: 450;
+    }
+
+    .wide-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 7.33vw;
+        height: 4vh;
+        background-color: #060930;
+        border-radius: 0.5vh;
+        box-shadow: 5px 5px 2px 5px #3c3d5c;
+    }
+
+    .slim-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 4vh;
+        width: 3.66vw;
+        background-color: #060930;
+        border-radius: 0.5vh;
+        box-shadow: 5px 5px 2px 5px #3c3d5c;
+    }
+
+    .num-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 4vh;
+        width: 3.66vw;
+        background-color: #2c3079;
+        border-radius: 0.5vh;
+        box-shadow: 5px 5px 2px 5px #3c3d5c;
+    }
+
+    .plus-button {
+        width: 7.33vw;
+        height: 10vh;
+        background-color: #060930;
+        border-radius: 0.5vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 7vh;
+        font-weight: 600;
+        box-shadow: 5px 5px 2px 5px #3c3d5c;
+    }
+
+    .wide-button:hover {
+        width: 6vw;
+        height: 3.1vh;
+        background-color: #060930;
+        border-radius: 0.5vh;
+        cursor: pointer;
+        box-shadow: 5px 5px 2px 1px #3c3d5c;
+    }
+
+    .slim-button:hover {
+        height: 3.1vh;
+        width: 3vw;
+        background-color: #060930;
+        border-radius: 0.5vh;
+        cursor: pointer;
+        box-shadow: 5px 5px 2px 1px #3c3d5c;
+    }
+
+    .num-button:hover {
+        height: 5vh;
+        width: 3.66vw;
+        background-color: #2c3079;
+        border-radius: 0.5vh;
+        cursor: pointer;
+        box-shadow: 5px 5px 2px 1px #3c3d5c;
+    }
+
+    .plus-button:hover {
+        transform: rotate(-12deg);
+        background-color: #060930;
+        border-radius: 0.5vh;
+        cursor: pointer;
+        box-shadow: 5px 5px 2px 1px #3c3d5c;
+    }
+
+    @media(max-width:900px) {
+        .buttons-full {
+            font-size: 1.4em;
+        }
+        .wide-button {
+            box-shadow: 3px 5px 2px 2px #3c3d5c;
+        }
+
+        .slim-button {
+            box-shadow: 3px 5px 2px 2px #3c3d5c;
+        }
+
+        .num-button {
+            box-shadow: 3px 5px 2px 2px #3c3d5c;
+        }
+
+        .plus-button {
+            box-shadow: 3px 5px 2px 2px #3c3d5c;
+        }
+
+        .plus-button:hover {
+            box-shadow: 3px 5px 2px 0.5px #3c3d5c;
+        }
+    }
+
+    @media(max-width:600px) {
+        .plus-button:hover {
+            transform: rotate(-7deg);
+            box-shadow: 3px 5px 2px 0.5px #3c3d5c;
+        }
+
+        .display {
+            width: 35.5vw;
+            margin-left: 1.5vw;
+            margin-top: 1.5vw;
+            padding-right: 1vw;
+            font-size: 2vh;
+        }
+    }
+
+    @media(max-width:530px) {
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            width: 60vw;
+            height: 60vh;
+
+        }
+
+        .wide-button {
+            box-shadow: 3px 5px 2px 1.5px #3c3d5c;
+        }
+
+        .slim-button {
+            box-shadow: 3px 5px 2px 1.5px #3c3d5c;
+        }
+
+        .num-button {
+            box-shadow: 3px 5px 2px 1.5px #3c3d5c;
+        }
+
+        .plus-button {
+            box-shadow: 3px 5px 2px 1.5px #3c3d5c;
+        }
+
+        .plus-button:hover {
+            box-shadow: 3px 5px 2px 0.5px #3c3d5c;
+        }
+
+        .display {
+            width: 54.5vw;
+            height: 7vh;
+            margin-left: 2vw;
+            margin-top: 2vw;
+            padding-right: 0.9vw;
+        }
+
+
+
+
+        .buttons-column-wide {
+            width: 11vw;
+            height: 45vh;
+        }
+
+        .buttons-column-slim {
+            width: 5.5vw;
+            height: 45vh;
+        }
+
+        .buttons-full {
+            margin-top: 1.5vw;
+            width: 60vw;
+            height: 45vh;
+        }
+
+        .wide-button {
+            width: 11vw;
+            height: 6.2vh;
+        }
+
+        .slim-button {
+            height: 6vh;
+            width: 5.5vw;
+        }
+
+        .num-button {
+            height: 6vh;
+            width: 5.5vw;
+        }
+
+        .plus-button {
+            width: 11vw;
+            height: 15vh;
+        }
+    }
+    @media(max-height:600px){
+        .display {
+            font-size: 3vh;
+        }
+        .buttons-full {
+        font-size: 3vh;
+    }
+    }
+    @media(max-width:1200px){
+    
+    .wide-button {
+            box-shadow: 3px 5px 2px 1.5px #3c3d5c;
+        }
+
+        .slim-button {
+            box-shadow: 3px 5px 2px 1px #3c3d5c;
+        }
+
+        .num-button {
+            box-shadow: 3px 5px 2px 1.5px #3c3d5c;
+        }
+
+        .plus-button {
+            box-shadow: 3px 5px 2px 1.5px #3c3d5c;
+        }
+
+        .plus-button:hover {
+            box-shadow: 3px 5px 2px 0.5px #3c3d5c;
+        }
+    }
+</style>
+
+<body>
+    <div class="whole">
+        <div class="calculator">
+            <div class="display">
+                <p class="display-text">120 + 78 - 20 / 2</p>
+            </div>
+            <div class="buttons-full">
+                <div class="buttons-column-wide">
+                    <div class="wide-button">
+                        <p>M/EX</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>AC</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>±</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>►</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>C</p>
+                    </div>
+                </div>
+                <div class="buttons-column-slim">
+                    <div class="slim-button">
+                        <p>M+</p>
+                    </div>
+                    <div class="num-button">
+                        <p>7</p>
+                    </div>
+                    <div class="num-button">
+                        <p>4</p>
+                    </div>
+                    <div class="num-button">
+                        <p>1</p>
+                    </div>
+                    <div class="num-button">
+                        <p>0</p>
+                    </div>
+                </div>
+                <div class="buttons-column-slim">
+                    <div class="slim-button">
+                        <p>M-</p>
+                    </div>
+                    <div class="num-button">
+                        <p>8</p>
+                    </div>
+                    <div class="num-button">
+                        <p>5</p>
+                    </div>
+                    <div class="num-button">
+                        <p>2</p>
+                    </div>
+                    <div class="num-button">
+                        <p>00</p>
+                    </div>
+                </div>
+                <div class="buttons-column-slim">
+                    <div class="slim-button">
+                        <p>MR</p>
+                    </div>
+                    <div class="num-button">
+                        <p>9</p>
+                    </div>
+                    <div class="num-button">
+                        <p>6</p>
+                    </div>
+                    <div class="num-button">
+                        <p>3</p>
+                    </div>
+                    <div class="num-button">
+                        <p>.</p>
+                    </div>
+                </div>
+                <div class="buttons-column-wide">
+                    <div class="wide-button">
+                        <p>MC</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>%</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>x</p>
+                    </div>
+                    <div class="plus-button">
+                        <p>+</p>
+                    </div>
+                </div>
+                <div class="buttons-column-wide">
+                    <div class="wide-button">
+                        <p>GT</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>√</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>÷</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>-</p>
+                    </div>
+                    <div class="wide-button">
+                        <p>=</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- zdroje:https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate()-->
